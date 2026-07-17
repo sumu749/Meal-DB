@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import CategoryCard from "../components/CategoryCard";
 function CategoryPage() {
     const [categories, setCategories] = useState([]);
 
@@ -28,36 +28,12 @@ function CategoryPage() {
                 </button>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {categories.map((category) => (
-                    <div
+                    <CategoryCard
                         key={category.idCategory}
-                        className="bg-white rounded-xl shadow-lg overflow-hidden"
-                    >
-                        <img
-                            src={category.strCategoryThumb}
-                            alt={category.strCategory}
-                            className="w-full"
-                        />
-
-                        <div className="p-5">
-                            <h2 className="text-2xl font-semibold">
-                                {category.strCategory}
-                            </h2>
-
-                            <p className="text-gray-600 my-3">
-                                {category.strCategoryDescription.slice(0, 120)}
-                                ...
-                            </p>
-
-                            <Link
-                                to={`/meals/${category.strCategory}`}
-                                className="text-blue-600 font-semibold"
-                            >
-                                View Food →
-                            </Link>
-                        </div>
-                    </div>
+                        category={category}
+                    />
                 ))}
             </div>
         </div>
